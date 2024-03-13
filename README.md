@@ -1,4 +1,4 @@
-# perplexity Ai widget for plasma 6
+# Ollama  widget for plasma 6
 
 This will only open `http://localhost:3000/`
 
