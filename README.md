@@ -14,12 +14,13 @@
 Just fork or clone the project :
 
 run the command on terminal
-`git clone  https://github.com/samirgaire10/com.samirgaire10.google_gemini-plasma6.git `
+`git clone https://github.com/samirgaire10/com.samirgaire10.Ollama-plasma6.git  `
 
 
 move the folder to `.local/share/plasma/plasmoids/`
 
 !!!!!!!!
+
 Just a remainder to install ollama web UI first or it will show u
 This site can’t be reachedlocalhost refused to connect.
 Try:
@@ -51,7 +52,10 @@ ERR_CONNECTION_REFUSED
 
 - Weblink  [Github](https://github.com/samirgaire10/com.samirgaire10.Weblink-plasma6.git)
 
+
 - Google Translater [Github](https://github.com/samirgaire10/com.samirgaire10.GoogleTranslater-plasma6.git)
+
+- google search [Github](https://github.com/samirgaire10/com.samirgaire10.Google-plasma6.git)
 
 
 
