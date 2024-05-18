@@ -19,7 +19,14 @@ run the command on terminal
 
 move the folder to `.local/share/plasma/plasmoids/`
 
-!!!!!!!!
+
+## ISSUES
+
+!!!!!!!!!  --
+"Plasmoid does not  retain login credentials or any other data after a session ends. Thus, each time you shut down, restart, or log out from your PC,
+you'll need to sign in again."
+  
+-------
 
 Just a remainder to install ollama web UI first or it will show u
 This site can’t be reachedlocalhost refused to connect.
@@ -30,7 +37,7 @@ Checking the proxy and the firewall
 ERR_CONNECTION_REFUSED
 
 
-!!!!!!!!!!!!!
+--   !!!!!!!!!!!!!
 
 ## For plasma 6
 
