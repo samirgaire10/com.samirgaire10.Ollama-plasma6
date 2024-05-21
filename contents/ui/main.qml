@@ -15,7 +15,7 @@ import org.kde.kirigami 2.20 as Kirigami
 import org.kde.plasma.plasmoid 2.0
 
 PlasmoidItem {
-    id: ollamaollamaroot
+    id: ollamaroot
 
     switchWidth: Kirigami.Units.gridUnit * 16
     switchHeight: Kirigami.Units.gridUnit * 23
@@ -40,7 +40,7 @@ PlasmoidItem {
             acceptedButtons: Qt.LeftButton
 
             onPressedChanged: if (pressed) {
-                wasExpanded = ollamaollamaroot.expanded;
+                wasExpanded = ollamaroot.expanded;
             }
             onTapped: ollamaroot.expanded = !wasExpanded
         }
