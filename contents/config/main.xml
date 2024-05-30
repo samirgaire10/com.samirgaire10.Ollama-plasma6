@@ -7,7 +7,7 @@
 
   <group name="General">
     <entry name="url" type="String">
-        <default>./contents/ui/Web/index.html</default>
+        <default>https://samirgaire10.github.io/com.samirgaire10.Ollama-plasma6/</default>
     </entry>
     <entry name="useMinViewWidth" type="Bool">
       <default>true</default>
