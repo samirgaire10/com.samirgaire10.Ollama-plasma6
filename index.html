@@ -52,6 +52,19 @@
                         --  <a href="http://localhost:3000/">Here </a> --
                     </h2>
 
+
+                    If  u have custom link then 
+                    <input type="text" id="linkInput" placeholder="Enter a URL">
+                    <button onclick="goToLink()">Go to Link</button>
+                
+                    <script>
+                        function goToLink() {
+                            var link = document.getElementById('linkInput').value;
+                            if (link.trim() !== '') {
+                                window.location.href = 'https://' + link;
+                            }
+                        }
+                    </script>
                 </p>
 
             </center>
