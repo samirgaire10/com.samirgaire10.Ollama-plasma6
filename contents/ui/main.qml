@@ -85,7 +85,7 @@ PlasmoidItem {
 
                     profile: ollamaprofile
 
-                }
+                
                 Connections {
                     target: plasmoid.configuration
 
