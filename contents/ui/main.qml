@@ -1,10 +1,10 @@
 /*
- *   SPDX-FileCopyrightText: 2014, 2016 Mikhail Ivchenko <ematirov@gmail.com>
- *   SPDX-FileCopyrightText: 2018 Kai Uwe Broulik <kde@privat.broulik.de>
- *   SPDX-FileCopyrightText: 2020 Sora Steenvoort <sora@dillbox.me>
- *
- *   SPDX-License-Identifier: GPL-2.0-or-later
- */
+* SPDX-FileCopyrightText: 2014, 2016 Mikhail Ivchenko <ematirov@gmail.com>
+* SPDX-FileCopyrightText: 2018 Kai Uwe Broulik <kde@privat.broulik.de>
+* SPDX-FileCopyrightText: 2020 Sora Steenvoort <sora@dillbox.me>
+*
+* SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 import QtQuick
 import QtWebEngine
@@ -37,9 +37,9 @@ PlasmoidItem {
         TapHandler {
             property bool wasExpanded: false
 
-            acceptedButtons: Qt.LeftButton
+                acceptedButtons: Qt.LeftButton
 
-            onPressedChanged: if (pressed) {
+                onPressedChanged: if (pressed) {
                 wasExpanded = ollamaroot.expanded;
             }
             onTapped: ollamaroot.expanded = !wasExpanded
@@ -64,7 +64,7 @@ PlasmoidItem {
             Layout.preferredWidth: Kirigami.Units.gridUnit * 40
             Layout.preferredHeight: Kirigami.Units.gridUnit * 100
 
-         
+
 
             WebEngineView {
                 id: ollamawebview
@@ -72,84 +72,107 @@ PlasmoidItem {
                 onUrlChanged: plasmoid.configuration.url = url;
                 Component.onCompleted: url = plasmoid.configuration.url;
 
-                readonly property bool useMinViewWidth : plasmoid.configuration.useMinViewWidth
+                readonly property bool useMinViewWidth: plasmoid.configuration.useMinViewWidthh
 
+                    WebEngineProfile {
+                        id: ollamaprofile
+                        httpUserAgent: getUserAgent()
+                        storageName: "ollama"
+                        offTheRecord: false
+                        httpCacheType: WebEngineProfile.DiskHttpCache
+                        persistentCookiesPolicy: WebEngineProfile.ForcePersistentCookies
+                    }
+
+                    profile: ollamaprofile
+
+                }
                 Connections {
                     target: plasmoid.configuration
 
-                    function onMinViewWidthChanged() {updateZoomTimer.start()}
+                    function onMinViewWidthChanged()
+                    {updateZoomTimer.start()}
 
-                    function onUseMinViewWidthChanged() {updateZoomTimer.start()}
+                        function onUseMinViewWidthChanged()
+                        {updateZoomTimer.start()}
 
-                    function onConstantZoomFactorChanged() {updateZoomTimer.start()}
+                            function onConstantZoomFactorChanged()
+                            {updateZoomTimer.start()}
 
-                    function onUseConstantZoomChanged() {updateZoomTimer.start()}
-                }
+                                function onUseConstantZoomChanged()
+                                {updateZoomTimer.start()}
+                                }
 
-                onLinkHovered: hoveredUrl => {
-                    if (hoveredUrl.toString() !== "") {
-                        mouseArea.cursorShape = Qt.PointingHandCursor;
-                    } else {
-                        mouseArea.cursorShape = Qt.ArrowCursor;
-                    }
-                }
+                                onLinkHovered: hoveredUrl => {
+                                if (hoveredUrl.toString() !== "")
+                                {
+                                    mouseArea.cursorShape = Qt.PointingHandCursor;
+                                } else {
+                                mouseArea.cursorShape = Qt.ArrowCursor;
+                            }
+                        }
 
-                onWidthChanged: {
-                    if (useMinViewWidth) {
-                        updateZoomTimer.start()
-                    }
-                }
+                        onWidthChanged: {
+                            if (useMinViewWidth)
+                            {
+                                updateZoomTimer.start()
+                            }
+                        }
 
-                onLoadingChanged: loadingInfo => {
-                    if (loadingInfo.status === WebEngineLoadingInfo.LoadStartedStatus) {
-                        infoButton.dismiss();
-                    } else if (loadingInfo.status === WebEngineLoadingInfo.LoadSucceededStatus && useMinViewWidth) {
+                        onLoadingChanged: loadingInfo => {
+                        if (loadingInfo.status === WebEngineLoadingInfo.LoadStartedStatus)
+                        {
+                            infoButton.dismiss();
+                        } else if (loadingInfo.status === WebEngineLoadingInfo.LoadSucceededStatus && useMinViewWidth) {
                         updateZoomTimer.start();
                     }
                 }
 
                 onContextMenuRequested: request => {
-                    if (request.mediaType === ContextMenuRequest.MediaTypeNone && request.linkUrl.toString() !== "") {
-                        linkContextMenu.link = request.linkUrl;
-                        linkContextMenu.open(request.position.x, request.position.y);
-                        request.accepted = true;
-                    }
-                }
-
-                onNavigationRequested: request => {
-                    var url = request.url;
-
-                    if (request.userInitiated) {
-                        Qt.openUrlExternally(url);
-                    } else {
-                        infoButton.show(i18nc("An unwanted popup was blocked", "Popup blocked"), "document-close",
-                                        i18n("Click here to open the following blocked popup:\n%1", url), function () {
-                            Qt.openUrlExternally(url);
-                            infoButton.dismiss();
-                        });
-                    }
-                }
-
-                onIconChanged: {
-                    if (loading && icon == "") {
-                        return;
-                    }
-                    Plasmoid.configuration.favIcon = icon.toString().slice(16 /* image://favicon/ */);
+                if (request.mediaType === ContextMenuRequest.MediaTypeNone && request.linkUrl.toString() !== "")
+                {
+                    linkContextMenu.link = request.linkUrl;
+                    linkContextMenu.open(request.position.x, request.position.y);
+                    request.accepted = true;
                 }
             }
 
-            MouseArea {
-                id: mouseArea
-                anchors.fill: parent
-                acceptedButtons: Qt.BackButton | Qt.ForwardButton
-                onPressed: mouse => {
-                    if (mouse.button === Qt.BackButton) {
-                        ollamawebview.goBack();
-                    } else if (mouse.button === Qt.ForwardButton) {
-                        ollamawebview.goForward();
-                    }
-                }
-            }
-        }
+            onNavigationRequested: request => {
+            var url = request.url;
+
+            if (request.userInitiated)
+            {
+                Qt.openUrlExternally(url);
+            } else {
+            infoButton.show(i18nc("An unwanted popup was blocked", "Popup blocked"), "document-close",
+            i18n("Click here to open the following blocked popup:\n%1", url), function () {
+            Qt.openUrlExternally(url);
+            infoButton.dismiss();
+        });
     }
+}
+
+onIconChanged: {
+    if (loading && icon == "")
+    {
+        return;
+    }
+    Plasmoid.configuration.favIcon = icon.toString().slice(16 /* image://favicon/ */);
+}
+}
+
+MouseArea {
+    id: mouseArea
+    anchors.fill: parent
+    acceptedButtons: Qt.BackButton | Qt.ForwardButton
+    onPressed: mouse => {
+    if (mouse.button === Qt.BackButton)
+    {
+        ollamawebview.goBack();
+    } else if (mouse.button === Qt.ForwardButton) {
+    ollamawebview.goForward();
+}
+}
+}
+}
+}
 }
